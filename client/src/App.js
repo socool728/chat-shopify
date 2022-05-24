@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
@@ -22,31 +22,29 @@ import SaveCom from './components/buyDashboard/SaveCom';
 import SaveProduct from './components/buyDashboard/SaveProduct';
 import BuyProduct from './components/buyDashboard/BuyProduct';
 
-import {LOGOUT} from './actions/types';
+import { LOGOUT } from './actions/types';
 
 // Redux
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store';
-import {loadUser} from './actions/auth';
+import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
-import './img/CSS/theme.bundle.css';
-
 const App = () => {
-  useEffect (() => {
+  useEffect(() => {
     // check for token in LS when app first runs
     if (localStorage.token) {
       // if there is a token set axios headers for all requests
-      setAuthToken (localStorage.token);
+      setAuthToken(localStorage.token);
     }
     // try to fetch a user, if no token or invalid token we
     // will get a 401 response from our API
-    store.dispatch (loadUser ());
+    store.dispatch(loadUser());
 
     // log user out from all tabs if they log out in one tab
-    window.addEventListener ('storage', () => {
-      if (!localStorage.token) store.dispatch ({type: LOGOUT});
+    window.addEventListener('storage', () => {
+      if (!localStorage.token) store.dispatch({ type: LOGOUT });
     });
   }, []);
 
@@ -94,7 +92,12 @@ const App = () => {
             element={
               <PrivateRoute
                 component={function () {
-                  return <section><Nav /><Products /></section>;
+                  return (
+                    <section>
+                      <Nav />
+                      <Products />
+                    </section>
+                  );
                 }}
               />
             }
@@ -104,7 +107,12 @@ const App = () => {
             element={
               <PrivateRoute
                 component={function () {
-                  return <section><Nav /><SaveProduct /></section>;
+                  return (
+                    <section>
+                      <Nav />
+                      <SaveProduct />
+                    </section>
+                  );
                 }}
               />
             }
@@ -114,7 +122,12 @@ const App = () => {
             element={
               <PrivateRoute
                 component={function () {
-                  return <section><Nav /><SaveCom /></section>;
+                  return (
+                    <section>
+                      <Nav />
+                      <SaveCom />
+                    </section>
+                  );
                 }}
               />
             }
@@ -124,12 +137,16 @@ const App = () => {
             element={
               <PrivateRoute
                 component={function () {
-                  return <section><Nav /><BuyProduct /></section>;
+                  return (
+                    <section>
+                      <Nav />
+                      <BuyProduct />
+                    </section>
+                  );
                 }}
               />
             }
           />
-
         </Routes>
       </Router>
     </Provider>

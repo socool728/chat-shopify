@@ -2,11 +2,11 @@ import React from 'react';
 
 const ChatHeader = () => {
   return (
-    <div class="chat-header border-bottom py-4 py-lg-7">
-      <div class="row align-items-center">
-        <div class="col-2 d-xl-none">
+    <div className="chat-header border-bottom py-4 py-lg-7">
+      <div className="row align-items-center">
+        <div className="col-2 d-xl-none">
           <a
-            class="icon icon-lg text-muted"
+            className="icon icon-lg text-muted"
             href="./chat-direct.html"
             data-toggle-chat=""
           >
@@ -20,28 +20,28 @@ const ChatHeader = () => {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="feather feather-chevron-left"
+              className="feather feather-chevron-left"
             >
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </a>
         </div>
 
-        <div class="col-8 col-xl-12">
-          <div class="row align-items-center text-center text-xl-start">
-            <div class="col-12 col-xl-6">
-              <div class="row align-items-center gx-5">
-                <div class="col-auto">
-                  <div class="avatar avatar-online d-none d-xl-inline-block">
-                    <img class="avatar-img" src="./img/2.jpg" alt="" />
+        <div className="col-8 col-xl-12">
+          <div className="row align-items-center text-center text-xl-start">
+            <div className="col-12 col-xl-6">
+              <div className="row align-items-center gx-5">
+                <div className="col-auto">
+                  <div className="avatar avatar-online d-none d-xl-inline-block">
+                    <img className="avatar-img" src="./img/2.jpg" alt="" />
                   </div>
                 </div>
 
-                <div class="col overflow-hidden">
-                  <h5 class="text-truncate">Ollie Chandler</h5>
-                  <p class="text-truncate">
+                <div className="col overflow-hidden">
+                  <h5 className="text-truncate">Ollie Chandler</h5>
+                  <p className="text-truncate">
                     is typing
-                    <span class="typing-dots">
+                    <span className="typing-dots">
                       <span>.</span>
                       <span>.</span>
                       <span>.</span>
@@ -51,12 +51,12 @@ const ChatHeader = () => {
               </div>
             </div>
 
-            <div class="col-xl-6 d-none d-xl-block">
-              <div class="row align-items-center justify-content-end gx-6">
-                <div class="col-auto">
+            <div className="col-xl-6 d-none d-xl-block">
+              <div className="row align-items-center justify-content-end gx-6">
+                <div className="col-auto">
                   <a
                     href="./chat-direct.html"
-                    class="icon icon-lg text-muted"
+                    className="icon icon-lg text-muted"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvas-more"
                     aria-controls="offcanvas-more"
@@ -71,7 +71,7 @@ const ChatHeader = () => {
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="feather feather-more-horizontal"
+                      className="feather feather-more-horizontal"
                     >
                       <circle cx="12" cy="12" r="1"></circle>
                       <circle cx="19" cy="12" r="1"></circle>
@@ -80,24 +80,24 @@ const ChatHeader = () => {
                   </a>
                 </div>
 
-                <div class="col-auto">
-                  <div class="avatar-group">
+                <div className="col-auto">
+                  <div className="avatar-group">
                     <a
                       href="./chat-direct.html"
-                      class="avatar avatar-sm"
+                      className="avatar avatar-sm"
                       data-bs-toggle="modal"
                       data-bs-target="#modal-user-profile"
                     >
-                      <img class="avatar-img" src="./img/2.jpg" alt="#" />
+                      <img className="avatar-img" src="./img/2.jpg" alt="#" />
                     </a>
 
                     <a
                       href="./chat-direct.html"
-                      class="avatar avatar-sm"
+                      className="avatar avatar-sm"
                       data-bs-toggle="modal"
                       data-bs-target="#modal-profile"
                     >
-                      <img class="avatar-img" src="./img/2.jpg" alt="#" />
+                      <img className="avatar-img" src="./img/2.jpg" alt="#" />
                     </a>
                   </div>
                 </div>
@@ -106,10 +106,10 @@ const ChatHeader = () => {
           </div>
         </div>
 
-        <div class="col-2 d-xl-none text-end">
+        <div className="col-2 d-xl-none text-end">
           <a
             href="./chat-direct.html"
-            class="icon icon-lg text-muted"
+            className="icon icon-lg text-muted"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvas-more"
             aria-controls="offcanvas-more"
@@ -124,7 +124,7 @@ const ChatHeader = () => {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="feather feather-more-vertical"
+              className="feather feather-more-vertical"
             >
               <circle cx="12" cy="12" r="1"></circle>
               <circle cx="12" cy="5" r="1"></circle>

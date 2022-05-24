@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link, Navigate} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Landing = ({isAuthenticated}) => {
+const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return <Navigate to="/dashboard" />;
   }
@@ -15,8 +15,8 @@ const Landing = ({isAuthenticated}) => {
           <div className="landing-inner">
             <h1 className="x-large color-white">Welcome to Shopify WebSite</h1>
             <p className="lead">
-              Create a developer profile/portfolio, share posts and get help from
-              other developers
+              Create a developer profile/portfolio, share posts and get help
+              from other developers
             </p>
             <div className="buttons">
               <Link to="/register" className="btn btn-primary">
@@ -35,7 +35,8 @@ const Landing = ({isAuthenticated}) => {
             The largest international B2B sourcing platform
           </h1>
           <p className="mx-8">
-            Find the products of more than 3 million companies in all B2B sectors. Choose and contact the best suppliers for free.
+            Find the products of more than 3 million companies in all B2B
+            sectors. Choose and contact the best suppliers for free.
           </p>
         </div>
         <div className="col-md-4 flex center ml-5 ml-4">
@@ -74,7 +75,7 @@ const Landing = ({isAuthenticated}) => {
                     data-items-lg="2"
                     data-items-sm="1"
                     id="tns1"
-                    style={{transform: 'translate3d(-77.7778%, 0px, 0px)'}}
+                    style={{ transform: 'translate3d(-77.7778%, 0px, 0px)' }}
                   >
                     <div
                       className="tns-item tns-slide-cloned"
@@ -87,7 +88,7 @@ const Landing = ({isAuthenticated}) => {
                           className="card-img-top"
                           alt="course imge"
                           data-xblocker="passed"
-                          style={{visibility: 'visible'}}
+                          style={{ visibility: 'visible' }}
                         />
                         <div className="card-body pb-0">
                           <div className="d-flex justify-content-between mb-3">
@@ -179,7 +180,7 @@ const Landing = ({isAuthenticated}) => {
                           className="card-img-top"
                           alt="course imge"
                           data-xblocker="passed"
-                          style={{visibility: 'visible'}}
+                          style={{ visibility: 'visible' }}
                         />
                         <div className="card-body pb-0">
                           <div className="d-flex justify-content-between mb-3">
@@ -271,7 +272,7 @@ const Landing = ({isAuthenticated}) => {
                           className="card-img-top"
                           alt="course imge"
                           data-xblocker="passed"
-                          style={{visibility: 'visible'}}
+                          style={{ visibility: 'visible' }}
                         />
                         <div className="card-body pb-0">
                           <div className="d-flex justify-content-between mb-3">
@@ -365,9 +366,11 @@ const Landing = ({isAuthenticated}) => {
                           className="card-img-top"
                           alt="course imge"
                           data-xblocker="passed"
-                          style={{visibility: 'visible'}}
+                          style={{ visibility: 'visible' }}
                         />
-                        <div className="ribbon mt-3"><span>Free</span></div>
+                        <div className="ribbon mt-3">
+                          <span>Free</span>
+                        </div>
                         <div className="card-body pb-0">
                           <div className="d-flex justify-content-between mb-3">
                             <span className="hstack gap-2">
@@ -387,7 +390,8 @@ const Landing = ({isAuthenticated}) => {
                           </div>
                           <h5 className="card-title">
                             <Link to="#">
-                              The complete Digital Marketing Course - 8 Course in 1
+                              The complete Digital Marketing Course - 8 Course
+                              in 1
                             </Link>
                           </h5>
                           <div className="d-flex justify-content-between mb-2">
@@ -458,9 +462,11 @@ const Landing = ({isAuthenticated}) => {
                           className="card-img-top"
                           alt="course imge"
                           data-xblocker="passed"
-                          style={{visibility: 'visible'}}
+                          style={{ visibility: 'visible' }}
                         />
-                        <div className="ribbon mt-3"><span>Free</span></div>
+                        <div className="ribbon mt-3">
+                          <span>Free</span>
+                        </div>
                         <div className="card-body pb-0">
                           <div className="d-flex justify-content-between mb-3">
                             <span className="hstack gap-2">
@@ -480,7 +486,8 @@ const Landing = ({isAuthenticated}) => {
                           </div>
                           <h5 className="card-title">
                             <Link to="#">
-                              The complete Digital Marketing Course - 8 Course in 1
+                              The complete Digital Marketing Course - 8 Course
+                              in 1
                             </Link>
                           </h5>
                           <div className="d-flex justify-content-between mb-2">
@@ -567,19 +574,19 @@ const Landing = ({isAuthenticated}) => {
               </div>
             </div>
           </div>
-        </div>;
-
+        </div>
+        ;
       </div>
     </section>
   );
 };
 
 Landing.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  isAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect (mapStateToProps) (Landing);
+export default connect(mapStateToProps)(Landing);

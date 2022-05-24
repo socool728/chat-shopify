@@ -9,18 +9,16 @@ const SaveProduct = () => {
         <div className="row mb-4">
           <div className="col">
             <form>
-              <div class="input-group input-group-lg input-group-merge input-group-reverse">
-
+              <div className="input-group input-group-lg input-group-merge input-group-reverse">
                 <input
-                  class="form-control list-search"
+                  className="form-control list-search"
                   type="text"
                   placeholder="Search"
                 />
 
-                <div class="input-group-text">
-                  <span class="fas fa-search" />
+                <div className="input-group-text">
+                  <span className="fas fa-search" />
                 </div>
-
               </div>
             </form>
           </div>

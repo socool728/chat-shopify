@@ -1,16 +1,16 @@
-import React, {Fragment} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {logout} from '../../actions/auth';
+import { logout } from '../../actions/auth';
 
-const Navbar = ({auth: {isAuthenticated}, logout}) => {
+const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   const authLinks = (
     <ul>
       <li>
         <Link to="/chatroom">
           <i className="fas fa-comments" />
-          Chat Room
+          <span className="hide-sm">Chat Room</span>
         </Link>
       </li>
       <li>
@@ -40,7 +40,7 @@ const Navbar = ({auth: {isAuthenticated}, logout}) => {
   );
 
   return (
-    <nav className="navbar bg-light-only">
+    <nav className="navbar bg-light">
       <h1>
         <Link to="/">
           <i className="fas fa-gift" /> ECOMMERCE
@@ -53,11 +53,11 @@ const Navbar = ({auth: {isAuthenticated}, logout}) => {
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
+const mapStateToProps = (state) => ({
+  auth: state.auth
 });
 
-export default connect (mapStateToProps, {logout}) (Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);

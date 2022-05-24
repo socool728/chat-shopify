@@ -1,17 +1,16 @@
 // import react from 'react';
+// import User from '../../../../models/User';
 import ChatBox from './ChatBox';
-import UserNav from './UserNav';
+import UserSidebar from './UserSidebar';
+
+import './chat.css';
 
 const ChatRoom = () => {
   return (
-    <div className="layout overflow-hidden">
-      <UserNav />
-      <main className="main is-visible">
-        <div className="container h-100">
-          <ChatBox />
-        </div>
-      </main>
-    </div>
+    <section id="frame">
+      <UserSidebar />
+      <ChatBox />
+    </section>
   );
 };
 
