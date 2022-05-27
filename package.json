@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "prestart": "start mongod --dbpath ./DB",
-    "start": "node server",
+    "start": "concurrently \"node server\" \"npm run client\"",
     "preserver": "start mongod --dbpath ./DB",
     "server": "nodemon server",
     "client": "npm start --prefix client",
