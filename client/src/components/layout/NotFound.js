@@ -2,7 +2,7 @@ import React from 'react';
 
 const NotFound = () => {
   return (
-    <section className="container">
+    <section className="container" style={{ marginTop: '6em' }}>
       <h1 className="x-large text-primary">
         <i className="fas fa-exclamation-triangle" /> Page Not Found
       </h1>

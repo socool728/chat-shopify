@@ -1,7 +1,7 @@
 {
-  "name": "devconnector",
+  "name": "CHAT-OTP-SHOPIFY",
   "version": "1.0.0",
-  "description": "Social network for developers",
+  "description": "Shopify Website with Chat and OTP",
   "main": "server.js",
   "scripts": {
     "prestart": "start mongod --dbpath ./DB",
@@ -19,11 +19,13 @@
     "bcryptjs": "^2.4.3",
     "client": "file:client",
     "config": "^3.3.3",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-validator": "^6.8.1",
     "gravatar": "^1.8.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.8",
+    "nexmo": "^2.9.1",
     "normalize-url": "^5.3.0",
     "socket.io": "^2.4.0"
   },

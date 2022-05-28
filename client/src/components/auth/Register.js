@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
-import {Navigate} from 'react-router-dom';
-import {setAlert} from '../../actions/alert';
-import {register} from '../../actions/auth';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({setAlert, register, isAuthenticated}) => {
-  const [formData, setFormData] = useState ({
+const Register = ({ setAlert, register, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
     first_name: '',
     second_name: '',
     email: '',
@@ -17,7 +17,7 @@ const Register = ({setAlert, register, isAuthenticated}) => {
     address2: '',
     city: '',
     state: '',
-    zip: '',
+    zip: ''
   });
 
   const {
@@ -31,18 +31,18 @@ const Register = ({setAlert, register, isAuthenticated}) => {
     address2,
     city,
     state,
-    zip,
+    zip
   } = formData;
 
-  const onChange = e =>
-    setFormData ({...formData, [e.target.name]: e.target.value});
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
-    e.preventDefault ();
+  const onSubmit = async (e) => {
+    e.preventDefault();
     if (password !== password2) {
-      setAlert ('Passwords do not match', 'danger');
+      setAlert('Passwords do not match', 'danger');
     } else {
-      register ({
+      register({
         first_name,
         second_name,
         email,
@@ -52,7 +52,7 @@ const Register = ({setAlert, register, isAuthenticated}) => {
         address2,
         city,
         state,
-        zip,
+        zip
       });
     }
   };
@@ -62,7 +62,7 @@ const Register = ({setAlert, register, isAuthenticated}) => {
   }
 
   return (
-    <section className="container mt-15">
+    <section className="container" style={{ marginTop: '6em' }}>
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
         <i className="fas fa-user" /> Create Your Account
@@ -224,11 +224,11 @@ const Register = ({setAlert, register, isAuthenticated}) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
+  isAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect (mapStateToProps, {setAlert, register}) (Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);

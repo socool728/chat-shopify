@@ -1,80 +1,140 @@
-import React from 'react';
-// import ChatHeader from './ChatHeader';
-// import ChatBody from './ChatBody';
-// import ChatFooter from './ChatFooter';
+import React, { useState, useEffect, useRef } from 'react';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import socketIOClient from 'socket.io-client';
+import setAuthToken from '../../utils/setAuthToken';
 
-const ChatBox = () => {
+import {
+  getConversationMessages,
+  sendConversationMessage
+} from '../../actions/chat.js';
+import { MESSAGE_SUCCESS } from '../../actions/types';
+
+const ChatBox = (props) => {
+  setAuthToken(localStorage.token);
+
+  const currentUserId = props.auth.user._id;
+  const [newMessage, setNewMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [lastMessage, setLastMessage] = useState(null);
+
+  let chatBottom = useRef(null);
+
+  useEffect(() => {
+    reloadMessages();
+    scrollToBottom();
+  }, [lastMessage, props.scope, props.conversationId]);
+
+  useEffect(() => {
+    const socket = socketIOClient('/');
+    socket.on('messages', (data) => setLastMessage(data));
+  }, []);
+
+  const reloadMessages = () => {
+    if (props.scope !== null && props.conversationId !== null) {
+      getConversationMessages(props.user._id, props.auth.user._id).then(
+        (req) => {
+          setMessages(req.data);
+        }
+      );
+    } else {
+      setMessages([]);
+    }
+  };
+
+  const scrollToBottom = () => {
+    chatBottom.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendConversationMessage(
+      props.auth.user._id,
+      props.user._id,
+      newMessage
+    ).then((res) => {
+      setNewMessage('');
+    });
+  };
+
   return (
-    <div class="content">
-      <div class="contact-profile">
-        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-        <p>Harvey Specter</p>
-        <div class="social-media">
-          <i class="fa fa-facebook" aria-hidden="true"></i>
-          <i class="fa fa-twitter" aria-hidden="true"></i>
-          <i class="fa fa-instagram" aria-hidden="true"></i>
+    <div className="content container">
+      <div className="contact-profile">
+        <img src={props.user.avatar} alt="" />
+        <p>{props.scope}</p>
+        <div className="social-media">
+          <i className="fa fa-facebook" aria-hidden="true" />
+          <i className="fa fa-twitter" aria-hidden="true" />
+          <i className="fa fa-instagram" aria-hidden="true" />
         </div>
       </div>
-      <div class="messages">
+
+      <div className="messages">
         <ul>
-          <li class="sent">
-            <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-            <p>
-              How the hell am I supposed to get a jury to believe you when I am
-              not even sure that I do?!
-            </p>
-          </li>
-          <li class="replies">
-            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <p>
-              When you're backed against the wall, break the god damn thing
-              down.
-            </p>
-          </li>
-          <li class="replies">
-            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <p>Excuses don't win championships.</p>
-          </li>
-          <li class="sent">
-            <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-            <p>Oh yeah, did Michael Jordan tell you that?</p>
-          </li>
-          <li class="replies">
-            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <p>No, I told him that.</p>
-          </li>
-          <li class="replies">
-            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <p>What are your choices when someone puts a gun to your head?</p>
-          </li>
-          <li class="sent">
-            <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-            <p>
-              What are you talking about? You do what they say or they shoot
-              you.
-            </p>
-          </li>
-          <li class="replies">
-            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <p>
-              Wrong. You take the gun, or you pull out a bigger one. Or, you
-              call their bluff. Or, you do any one of a hundred and forty six
-              other things.
-            </p>
-          </li>
+          {messages &&
+            messages.map((m) => (
+              <li key={m._id} className="sent">
+                <img src={props.user.avatar} alt="" />
+                <pre>
+                  {m.body}
+                  <br />
+                  <small>{m.date}</small>
+                </pre>
+              </li>
+            ))}
+          <li ref={chatBottom} style={{ padding: '40px' }}></li>
         </ul>
       </div>
-      <div class="message-input">
-        <div class="wrap">
-          <input type="text" placeholder="Write your message..." />
-          <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-          <button class="submit">
-            <i class="fa fa-paper-plane" aria-hidden="true"></i>
-          </button>
-        </div>
+
+      <div className="chat-footer">
+        <div
+          className="dz-preview"
+          id="dz-preview-row"
+          data-horizontal-scroll=""
+        />
+        <form
+          className="chat-form rounded-pill bg-light row"
+          onSubmit={handleSubmit}
+        >
+          <div className="input-group">
+            <i
+              className="fas fa-paperclip"
+              style={{
+                fontSize: '2em',
+                marginLeft: '10px',
+                marginRight: '10px',
+                marginTop: '8px',
+                color: '#435f7a'
+              }}
+            />
+            <textarea
+              className="form-color"
+              placeholder="Type your message..."
+              rows="1"
+              id="message"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+            />
+
+            <button className="send" type="submit">
+              <i className="fas fa-paper-plane" />
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
-export default ChatBox;
+ChatBox.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { sendConversationMessage })(ChatBox);

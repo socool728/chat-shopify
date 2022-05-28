@@ -10,17 +10,11 @@ import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
-import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import NotFound from './components/layout/NotFound';
 import PrivateRoute from './components/routing/PrivateRoute';
 import ChatRoom from './components/chatroom';
-import BuyDash from './components/buyDashboard';
-import Products from './components/buyDashboard/Products';
-import Nav from './components/buyDashboard/Nav';
-import SaveCom from './components/buyDashboard/SaveCom';
-import SaveProduct from './components/buyDashboard/SaveProduct';
-import BuyProduct from './components/buyDashboard/BuyProduct';
+import Dashboard from './components/Dashboard';
 
 import { LOGOUT } from './actions/types';
 
@@ -76,7 +70,6 @@ const App = () => {
             path="add-education"
             element={<PrivateRoute component={AddEducation} />}
           />
-          <Route path="posts" element={<PrivateRoute component={Posts} />} />
           <Route path="posts/:id" element={<PrivateRoute component={Post} />} />
           <Route path="/*" element={<NotFound />} />
           <Route
@@ -85,64 +78,78 @@ const App = () => {
           />
           <Route
             path="dashboard"
-            element={<PrivateRoute component={BuyDash} />}
+            element={<PrivateRoute component={Dashboard} />}
           />
           <Route
             path="dashboard/products"
             element={
               <PrivateRoute
                 component={function () {
-                  return (
-                    <section>
-                      <Nav />
-                      <Products />
-                    </section>
-                  );
+                  return <Dashboard show="products" />;
                 }}
               />
             }
           />
           <Route
-            path="dashboard/saveProduct"
+            path="dashboard/companies"
             element={
               <PrivateRoute
                 component={function () {
-                  return (
-                    <section>
-                      <Nav />
-                      <SaveProduct />
-                    </section>
-                  );
+                  return <Dashboard show="companies" />;
                 }}
               />
             }
           />
           <Route
-            path="dashboard/saveCompany"
+            path="dashboard/saveproducts"
             element={
               <PrivateRoute
                 component={function () {
-                  return (
-                    <section>
-                      <Nav />
-                      <SaveCom />
-                    </section>
-                  );
+                  return <Dashboard show="saveproducts" />;
                 }}
               />
             }
           />
           <Route
-            path="dashboard/buyProduct"
+            path="dashboard/savecompanies"
             element={
               <PrivateRoute
                 component={function () {
-                  return (
-                    <section>
-                      <Nav />
-                      <BuyProduct />
-                    </section>
-                  );
+                  return <Dashboard show="savecompanies" />;
+                }}
+              />
+            }
+          />
+          <Route
+            path="dashboard/myproducts"
+            element={
+              <PrivateRoute
+                component={function () {
+                  return <Dashboard show="myproducts" />;
+                }}
+              />
+            }
+          />
+          <Route
+            path="selldashboard/"
+            element={<PrivateRoute component={Dashboard} />}
+          />
+          <Route
+            path="selldashboard/manageproducts"
+            element={
+              <PrivateRoute
+                component={function () {
+                  return <Dashboard show="manageproducts" />;
+                }}
+              />
+            }
+          />
+          <Route
+            path="selldashboard/profile"
+            element={
+              <PrivateRoute
+                component={function () {
+                  return <Dashboard show="profile" />;
                 }}
               />
             }

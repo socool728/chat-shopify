@@ -21,7 +21,7 @@ const PostItem = ({
       </Link>
     </div>
     <div>
-      <p className="my-1">{text}</p>
+      <pre className="my-1">{text}</pre>
       <p className="post-date">Posted on {formatDate(date)}</p>
 
       {showActions && (
